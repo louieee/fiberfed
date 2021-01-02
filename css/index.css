@@ -12,11 +12,11 @@ body{
 .text-lighter{
     color: rgba(250,250,250,.7)
 }
-.content-block{
-    overflow: auto;
-    height: 500px;
-    max-height: 500px;
-}
+/*.content-block{*/
+/*    overflow: auto;*/
+/*    height: 500px;*/
+/*    max-height: 500px;*/
+/*}*/
 .ch-25{
     height: 25px
 }
