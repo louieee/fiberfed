@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./vendors/bootstrap/css/bootstrap.min.css">
+    <!-- Animate -->
+    <link rel="stylesheet" href="./vendors/animate/animate.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./vendors/font-awesome/css/fontawesome-all.min.css">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="./css/index.css">
+
+    <title>FiberFed</title>
+</head>
+<body>
+
+<div class="container-fluid py-5 px-5">
+    <div class="row content-block bg-light">
+
+        <div class="col-12 col-md-6 col-lg-5 px-0 pb-5 hero-side">
+            <div class="col-12 col-lg-10 px-0 py-0 offset-md-0 offset-lg-2">
+                <div class="col-12 logo-area">
+                    <img src="./images/logo.png" alt="company logo">
+                </div>
+                <!-- First Screen -->
+                <div id="first-screen">
+                    <div class="col-12">
+                        <h1 class="text-white mb-4">
+                            Make the switch to <br>
+                            a <em>high speed</em> <br>
+                            fiber-optic circuit
+                        </h1>
+                        <button class="btn btn-outline-light support-btn text-center p-2">
+                            <i class="fa fa-headphones"></i> Talk To Support
+                        </button>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <small>
+                            Or fill the form to get a quote <br>
+                            sent to your email <i class="fa fa-arrow-right"></i>
+                        </small>
+                    </div>
+                </div>
+                <!-- Second Screen -->
+                <div id="second-screen" class="px-5">
+                    <div class="col-12 pl-0 options-preview">
+                        <h5>Your Info</h5>
+                    </div>
+                    <div class="col-12 pl-0 options-preview">
+                        <h6 class="text-lighter">Service Type</h6>
+                        <p class="mb-2" id="serviceTxt">DIA</p>
+                    </div>
+                    <div class="col-12 pl-0 options-preview">
+                        <h6 class="text-lighter">Location</h6>
+                        <p class="mb-2" id="locationPreview"></p>
+                    </div>
+                    <div class="col-12 pl-0 options-preview">
+                        <div class="float-right">
+                            <i class="fa fa-caret-right"></i>
+                        </div>
+                        <h6 class="text-lighter">Quote</h6>
+                        <div class="ch-25"></div>
+                        <!--                        <p class="mb-2"></p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-7 px-5 pb-5 main-content">
+            <div class="row">
+                <div class="col-12 pt-150">
+                    <div class="float-right">
+                        <span class="badge badge-light p-2">
+                            Step <span id="currPageNum">1</span> of 3
+                        </span>
+                    </div>
+                    <!-- first text display -->
+                    <h1 id="currStepTxt">Get a quote now</h1>
+                    <!-- second text display -->
+                    <h1 id="nextStepTxt">
+                        Next Step
+                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg" style="font-size: 10px">
+                            <i class="fa fa-arrow-left"></i> return to services
+                        </span>
+                    </h1>
+                    <!-- third text display -->
+                    <h1 id="finalStepTxt">
+                        Get your quote
+                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg" style="font-size: 10px">
+                            <i class="fa fa-arrow-left"></i> return to services
+                        </span>
+                    </h1>
+                </div>
+                <div class="col-12 decision-txt mt-3">
+                    <!-- first text display -->
+                    <small class="text-muted pb-3">
+                        Which service would you like to purchase?
+                    </small>
+                    <!-- second text display -->
+                    <small class="text-muted pb-3">
+                        What address would you want to install this at?
+                    </small>
+                    <!-- third text display -->
+                    <small class="text-muted pb-3">
+                        Here are some services we can offer you!
+                    </small>
+                </div>
+                <!-- Options -->
+                <div class="mt-4 w-100">
+                    <div class="row">
+                        <!-- second alert info display -->
+                        <div id="address-alert" class="col-12">
+                            <div class="alert alert-primary" role="alert">
+                                <strong><i class="fa fa-info-circle"></i></strong>
+                                <span id="selectedOption">E-Line installations require two locations.</span>
+                            </div>
+                        </div>
+                        <!-- Options List -->
+
+                        <!-- Option 1 -->
+                        <div class="col-12 options">
+                            <div class="float-left text-center mr-4 icon">
+                                <i class="fa fa-building"></i>
+                            </div>
+                            <div class="float-right text-center mr-4 icon icon-btn">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                            <h5 class="font-weight-bolder">DIA</h5>
+                            <small class="text-muted">Dedicated Internet Access for your business</small>
+                        </div>
+                        <!-- Option 2 -->
+                        <div class="col-12 options">
+                            <div class="float-left text-center mr-4 icon">
+                                <i class="fa fa-link"></i>
+                            </div>
+                            <div class="float-right text-center mr-4 icon icon-btn">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                            <h5 class="font-weight-bolder">E-LINE</h5>
+                            <small class="text-muted">Point to Point connection for two(2) locations</small>
+                        </div>
+                        <!-- Option 3 -->
+                        <div class="col-12 options">
+                            <div class="float-left text-center mr-4 icon">
+                                <i class="fa fa-location-arrow"></i>
+                            </div>
+                            <div class="float-right text-center mr-4 icon icon-btn">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                            <h5 class="font-weight-bolder">ELAN</h5>
+                            <small class="text-muted">Secure Connectivity across all your locations</small>
+                        </div>
+                        <!-- End of Options List -->
+
+                        <!-- Address List -->
+                        <div class="address-block w-100 mt-3"></div>
+                        <!-- End of Address List -->
+
+                        <div class="col-12 mt-5 address-actions">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <div id="addAddressField" class="w-100">
+                                        <small class="text-muted font-weight-bolder mt-3">ADD ANOTHER BUILDING</small>
+                                        <div class="d-inline-block text-center mr-4 icon icon-btn">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <button class="btn btn-primary" id="toQuote">
+                                        <i class="fa fa-arrow-right"></i>&nbsp;CONTINUE TO QUOTE
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- services list -->
+                        <div class="w-100 mt-2">
+                            <div class="row services-block"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="container pt-5 pb-2">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="icon text-center">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <h5 class="my-2">Choose a Service</h5>
+                    <small class="text-muted">
+                        Tell us the service you would like to purchase
+                    </small>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="icon text-center">
+                        <i class="fa fa-location-arrow"></i>
+                    </div>
+                    <h5 class="my-2">Input a Location</h5>
+                    <small class="text-muted">
+                        Tell us where you would like the services to be
+                        installed
+                    </small>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="icon text-center">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <h5 class="my-2">Get a Quote</h5>
+                    <small class="text-muted">
+                        We will send a quote to your email inbox
+                        within 24 hours
+                    </small>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="icon text-center">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <h5 class="my-2">Place an Order</h5>
+                    <small class="text-muted">
+                        After getting our quote, you place an order
+                        via email
+                    </small>
+                </div>
+
+                <!-- Copyright -->
+                <div class="col-12 col-md-8 col-lg-9 mt-md-5 pt-3" style="border-top: 1px solid rgba(200,200,200, .6)">
+                    <small class="text-muted">&copy; 2021 Fiberfed Broadband Solutions, All Rights Reserved</small>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 mt-md-5 pt-3">
+                    <small class="text-muted">Home / Network / Services / Support</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
+<script src="./vendors/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>

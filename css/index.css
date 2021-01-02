@@ -1,0 +1,189 @@
+:root{
+    --accent-color: #f37848;
+    --primary-color: #003c8a
+}
+body{
+    background-color: #000000;
+}
+
+.pt-150{
+    padding-top: 150px
+}
+.text-lighter{
+    color: rgba(250,250,250,.7)
+}
+.content-block{
+    overflow: auto;
+    height: 500px;
+    max-height: 500px;
+}
+.ch-25{
+    height: 25px
+}
+
+.icon{
+    background-color: #f2f5f9;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #eaeff6;
+    padding-top: 7px;
+    color: var(--primary-color);
+    transition: all .3s linear;
+}
+.icon.icon-btn{
+    background: transparent;
+    border-width: 1px;
+    padding-top: 8px
+}
+
+#second-screen,
+#nextStepTxt,
+#finalStepTxt,
+.decision-txt small:nth-child(2),
+.decision-txt small:nth-child(3),
+#address-alert,
+.address-actions,
+#addAddressField{
+    display: none
+}
+
+.hover:hover{
+    cursor: pointer;
+}
+@media screen and (min-width: 320px) {
+    .hero-side{
+        background: url("../images/city.jpg") no-repeat center center;
+        background-size: cover;
+        min-height: 500px;
+        color: #ffffff;
+    }
+    .hero-side:before{
+        content: "";
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(6, 6, 76, 0.7);
+    }
+    .main-content{
+        background-color: #ffffff;
+        min-height: 500px;
+    }
+    .logo-area > img{
+        width: 150px;
+        height: 150px
+    }
+    .hero-side .support-btn{
+        border-radius: 30px;
+        width: 170px;
+        border-color: rgba(255,255,255,.5);
+    }
+    .decision-txt small{
+        display: block;
+        border-bottom: 1px solid rgb(220,220,220);
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .main-content .options:not(:first-child){
+        margin-top: 30px
+    }
+    .main-content .options:hover{
+        cursor: pointer;
+    }
+    .main-content .options h5{
+        transition: all .3s linear;
+    }
+    .main-content .options:hover .icon {
+        border-color: var(--accent-color)!important;
+        color: var(--accent-color)!important;
+        background-color: transparent;
+    }
+    .main-content .options:hover h5 {
+        color: var(--accent-color)!important;
+    }
+}
+
+@media screen and (min-width: 320px) {
+    .options-preview{
+        border-bottom: 1px solid rgba(250,250,250,.5);
+    }
+    .options-preview:not(:last-child){
+        margin-bottom: 20px;
+    }
+    .options-preview p{
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 320px){
+    .address-block input{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        border-color: rgba(250,250,250,.7);
+        border-width: 2px;
+        box-shadow: none!important;
+        font-size: 15px;
+    }
+    .address-block input:focus{
+        border-color: var(--accent-color)!important;
+    }
+    .address-block div.col-12:not(:last-child){
+        margin-bottom: 20px;
+    }
+    .address-actions button#toQuote{
+        width: 100%;
+        height: 50px;
+        border-radius: 30px;
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        font-size: 12px;
+        transition: all .3s linear;
+    }
+    .address-actions button#toQuote:hover{
+        background-color: transparent;
+        box-shadow: 1px 1px 2px var(--primary-color);
+        color: var(--primary-color)
+    }
+    .address-actions #addAddressField:hover{
+        cursor: pointer;
+    }
+    .address-actions #addAddressField:hover small{
+       color: var(--accent-color)!important;
+    }
+    .address-actions #addAddressField:hover .icon {
+        border-color: var(--accent-color)!important;
+        color: var(--accent-color)!important;
+        background-color: transparent;
+    }
+}
+
+@media screen and (min-width: 320px){
+    .services-block .card{
+        transition: all .3s linear;
+    }
+    .services-block .card .card-title{
+        font-size: 15px;
+    }
+    .services-block .card .card-text{
+        background: url("../images/bg-white.jpg") no-repeat center center;
+        background-size: cover;
+        min-height: 50px;
+        color: var(--primary-color)!important;
+    }
+    .services-block .card a{
+        text-decoration: none;
+        font-size: 12px;
+        transition: all .3s linear;
+    }
+    .services-block .card:hover a{
+        color: var(--accent-color)!important;
+    }
+    .services-block .card:hover{
+        box-shadow: 2px 2px 10px rgba(0,0,0,.1);
+    }
+}
