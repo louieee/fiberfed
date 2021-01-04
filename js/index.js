@@ -59,8 +59,10 @@
             context?serviceTxt.text(context):null;
             currPageNumberDisplayElem.text(toPage);
             if(toPage === 2){   // address page
-                togglePageElements(toPage)
-                initializeAddressElements()
+                addressPayload.addresses = [];
+                addressPayload.service = selectedOption;
+                togglePageElements(toPage);
+                initializeAddressElements();
             }else if(toPage === 3){   // quote page
                 servicesBlock.empty();
 
@@ -69,17 +71,12 @@
                 // fetchServices1()
 
                 // TODO: Uncomment next lines to populate needed real data
-                let response = await populateAddressesGeometry();
-                addressPayload.addresses = response;
-                addressPayload.service = selectedOption;
-                if(response.length > 0){
-                    pricingList = [];
-                    response = await fetchPricingList(addressPayload)
-                    if(response){
-                        pricingList = response.pricing_list;
-                        togglePageElements(toPage)
-                        fetchServices(response.pricing_list)
-                    }
+                pricingList = [];
+                let response = await fetchPricingList(JSON.stringify(addressPayload))
+                if(response){
+                    pricingList = response.pricing_list;
+                    togglePageElements(toPage)
+                    fetchServices(response.pricing_list)
                 }
             }else{
                 togglePageElements(toPage)
@@ -129,9 +126,8 @@
 
                 finalStepTxt.fadeIn('slow')
                 decisionTxt3.fadeIn('slow').css('display', 'block');
-                if(addressValues.length > 0){
-                    const tmp_list =  addressValues.map((address, index)=>`#${index}. ${address}`);
-                    tmp_list.shift();   // indexing is from one not zero
+                if(addressPayload.addresses.length > 0){
+                    const tmp_list =  addressValues.map((address, index)=>`#${index+1}. ${address}`);
                     locationPreview.html(tmp_list.join('<br>'))
                 }else{
                     locationPreview.text('')
@@ -144,7 +140,7 @@
             //     addressBlockElement.empty();
             // }
             addressBlockElement.empty();
-            for(let count=1; count <= defaultNumberOfAddresses[selectedOption]; count++){
+            for(let count=0; count < defaultNumberOfAddresses[selectedOption]; count++){
                 appendAddressField(count)
             }
         }
@@ -152,57 +148,39 @@
             addressBlockElement.append(`
                     <div class="col-12">
                                 <div class="w-100 mb-2">
-                                    <span class="badge badge-light p-2 text-muted"> <i class="fa fa-building"></i> Address ${fieldCount}</span>
+                                    <span class="badge badge-light p-2 text-muted"> <i class="fa fa-building"></i> Address ${fieldCount+1}</span>
                                 </div>
                                 <input class="form-control" type="text" id="address_${fieldCount}" placeholder="Enter a building address">
                             </div>
                     `);
-            $('#address_'+fieldCount).on('input', function(event){
-                addressValues[fieldCount] = $(this).val();
+            addressPayload.addresses.push({
+                address: '',
+                longitude: 0,
+                latitude: 0
             })
-        }
-        async function populateAddressesGeometry(){
-            let responses = [];
-            const promiseArray = addressValues.map(address=>{
-                return $.ajax('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', {
-                    dataType: 'json',
-                    data: {
-                        key: 'AIzaSyDg6MWhP5rxuDdvkXNVQdKAoi_5f-x7BHI',
-                        input: address,
-                        inputtype: 'textquery',
-                        fields: 'formatted_address,name,geometry,business_status'
-                    }
-                })
-            })
-            try{
-                responses = await Promise.all(promiseArray);
-                responses.shift();
-                responses = responses.map((response, index)=>{
-                    if(response.candidates.length > 0){
-                        return {
-                            address: addressValues[index+1],
-                            longitude: response.candidates[0].geometry.location.lng||0,
-                            latitude: response.candidates[0].geometry.location.lat||0
-                        }
-                    }
-                    return {address:addressValues[index+1], longitude: 0, latitude: 0}
-                })
-            }catch (e) {
-                alert(`Unable to fetch address info: ${e.message}`)
-            }
-            return responses
+            let input = document.getElementById('address_'+fieldCount);
+            let autocomplete = new google.maps.places.Autocomplete(input);
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                let place = autocomplete.getPlace();
+                $('#address_'+fieldCount).val(place.formatted_address)
+                addressPayload.addresses[fieldCount].address = place.formatted_address;
+                addressPayload.addresses[fieldCount].latitude = place.geometry.location.lat();
+                addressPayload.addresses[fieldCount].longitude = place.geometry.location.lng();
+            });
         }
         async function fetchPricingList(payload){
             let response = null;
             try {
-                response = await $.ajax('localhost:8000/quote/get_addresses/', {
-                    method: 'POST',
-                    dataType: 'json',
-                    data: {...payload}
-                });
+                response = await $.post('http://8ed4303a7e71.ngrok.io/quote/get_addresses/',
+                    payload,
+                    (data)=>{
+                        response = data;
+                        console.log('Response Data:', data)
+                    })
             }catch (e) {
                 toastr.error(e.message, "Unable to complete request")
             }
+            console.log('Returned Response:', response)
             return response
         }
         let selectedPricing = {}
@@ -244,7 +222,7 @@
                                 </div>
                 `);
                 $(`#pricing_${i}`).on('click', function () {
-                    selectedPricing = pricing_list[i];
+                    selectedPricing = pricingList[i];
                     $('#s_service_txt').text(selectedPricing.service);
                     $('#s_bandwidth').text(selectedPricing.bandwidth);
                     $('#s_price_range').text(`$${selectedPricing.min_cost}-$${selectedPricing.max_cost}`);
@@ -257,28 +235,29 @@
             const company_name = $('#compname').val();
             const phone = $('#phone').val();
             const email = $('#email').val();
+            let response;
             if(!full_name || !company_name || !phone || !email){
                 toastr.warning("Please complete all fields")
             }else if(!validateEmail(email)){
                 toastr.warning("Invalid email address")
             }else{
                 try {
-                    await $.ajax('localhost:8000/quote/send_quote/', {
-                        method: 'POST',
-                        dataType: 'json',
-                        data: {
+                    response = await $.post('http://8ed4303a7e71.ngrok.io/quote/send_quote/',
+                        JSON.stringify({
                             email,
                             full_name,
-                            service: selectedPricing.service,
-                            pricing_ids: selectedPricing.pricing_ids
-                        }
-                    });
-                    return { quote_id : 5672}
+                            ...selectedPricing
+                        }),
+                        (data)=>{
+                            response = data;
+                            console.log('Response Data:', data)
+                        })
+                    response = { quote_id : 5672}   // remove: test response
                 }catch (e) {
                     toastr.error(e.message, "Unable to complete request");
                 }
             }
-            return null
+            return response
         }
         function validateEmail(mail){
             return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)
