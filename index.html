@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./vendors/animate/animate.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="./vendors/font-awesome/css/fontawesome-all.min.css">
+    <!-- Toaster -->
+    <link rel="stylesheet" href="./vendors/toastr/toastr.min.css">
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="./css/index.css">
@@ -36,7 +38,7 @@
                             a <em>high speed</em> <br>
                             fiber-optic circuit
                         </h1>
-                        <button class="btn btn-outline-light support-btn text-center p-2">
+                        <button class="btn btn-outline-light support-btn text-center p-2" data-toggle="modal" data-target="#quoteDone">
                             <i class="fa fa-headphones"></i> Talk To Support
                         </button>
                     </div>
@@ -243,6 +245,140 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
+    <!-- Get Quote Modal -->
+    <div class="modal fade" id="quoteRequest" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content px-4">
+                <div class="modal-header pb-3 px-4 pt-5 pr-5">
+                    <h5 class="modal-title" id="quoteRequestLabel">Request a Quote</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6 py-3">
+                            <div class="float-left text-center mr-2 icon">
+                                <i class="fa fa-building"></i>
+                            </div>
+                            <h6 class="px-lg-3 px-md-1 text-muted">
+                                IP Services <br>
+                                <small class="font-weight-bolder" id="s_service_txt">DIA</small>
+                            </h6>
+                        </div>
+                        <div class="col-6 text-right py-3">
+                            <h5 class="text-muted px-3" id="s_bandwidth">50Mb</h5>
+                        </div>
+                        <div class="col-12">
+                            <p class="text-muted font-weight-bolder"><small>
+                                Please fill in your contact information below
+                            </small></p>
+                        </div>
+                        <div class="col-12 pb-4">
+                            <form role="form">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <label for="fullname" class="text-muted">
+                                            <i class="fa fa-user"></i> Full Name
+                                        </label>
+                                        <input type="text" id="fullname" class="form-control" placeholder="First and Last Name">
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <label for="compname" class="text-muted">
+                                            <i class="fa fa-building"></i> Company Name
+                                        </label>
+                                        <input type="text" id="compname" class="form-control" placeholder="Company Name">
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <label for="phone" class="text-muted">
+                                            <i class="fa fa-phone fa-rotate-90"></i> Phone Number
+                                        </label>
+                                        <input type="tel" id="phone" class="form-control" placeholder="phone number">
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <label for="email" class="text-muted">
+                                            <i class="fa fa-envelope"></i> Email Address
+                                        </label>
+                                        <input type="email" id="email" class="form-control" placeholder="example@domain.com">
+                                    </div>
+
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <h4 class="text-muted" id="s_price_range">
+                                            $480 - $650
+                                        </h4>
+                                    </div>
+                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                        <button class="btn btn-primary" id="getQuote">
+                                            <i class="fa fa-arrow-right"></i>&nbsp;GET QUOTE
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Quote Sent Modal -->
+    <div class="modal fade" id="quoteDone" tabindex="-1" role="dialog" aria-labelledby="quoteDoneLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content px-4">
+                <div class="modal-header pb-3 px-4 pt-5 pr-5">
+                    <h5 class="modal-title" id="quoteDoneLabel">Quote Sent</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                            <h6 class="txt-primary font-weight-bolder">
+                                Quote ID: <span id="quote_id">1293G49E</span>
+                            </h6>
+                            <p class="text-muted mt-5">
+                                Your completed quote will be sent to your inbox
+                                within 24 hours. Look for an e-mail from sales@fiberfed.com
+                            </p>
+                        </div>
+                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2 services-block">
+                            <div class="card">
+                                <div class="card-body px-0 pb-0">
+                                    <div class="float-left text-center mx-2 icon">
+                                        <i class="fa fa-building"></i>
+                                    </div>
+                                    <div class="float-right">
+                                        <h5 class="text-muted px-3">50Mb</h5>
+                                    </div>
+                                    <h5 class="card-title px-3 text-muted">IP Services</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted font-weight-bolder px-3">DIA</h6>
+                                    <h4 class="card-text p-3 text-center">
+                                        $480 - $650
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-12 col-md-12 col-lg-6">
+                        <p class="text-muted">Have any questions?</p>
+                        <button class="btn fiber-btn-inv">
+                            <i class="fa fa-headphones"></i>&nbsp;TALK TO SUPPORT
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6">
+                        <p class="text-muted">Want another quote?</p>
+                        <button class="btn fiber-btn-inv" data-dismiss="modal" id="newQuote">
+                            <i class="fa fa-plus"></i>&nbsp;GET ANOTHER QUOTE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -250,6 +386,7 @@
 
 <script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
 <script src="./vendors/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="./vendors/toastr/toastr.min.js"></script>
 <script src="./js/index.js"></script>
 </body>
 </html>

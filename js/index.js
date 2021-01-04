@@ -24,11 +24,14 @@
             'E-LINE': 2,
             'ELAN': 3
         }
-
         let currentPage = 1;
         let selectedOption = '';
         let totalNumberOfAddressField = 3;
-        let addressValues = []
+        let addressValues = [];
+        const addressPayload = {
+            addresses: [],
+            service: ''
+        }
 
 
         for(const option of optionElem){
@@ -47,18 +50,39 @@
         })
 
         $('.bck-scnd-pg').on('click', ()=>gotoPage(1))
+        $('#newQuote').on('click', ()=>gotoPage(1))
 
-        function gotoPage(toPage, context=''){
+        let pricingList = [];
+        async function gotoPage(toPage, context=''){
             currentPage = toPage;
             context?selectedOption = context:null;
             context?serviceTxt.text(context):null;
             currPageNumberDisplayElem.text(toPage);
-            togglePageElements(toPage)
             if(toPage === 2){   // address page
+                togglePageElements(toPage)
                 initializeAddressElements()
             }else if(toPage === 3){   // quote page
                 servicesBlock.empty();
-                fetchServices()
+
+                // TODO: To populate test data
+                // togglePageElements(toPage)
+                // fetchServices1()
+
+                // TODO: Uncomment next lines to populate needed real data
+                let response = await populateAddressesGeometry();
+                addressPayload.addresses = response;
+                addressPayload.service = selectedOption;
+                if(response.length > 0){
+                    pricingList = [];
+                    response = await fetchPricingList(addressPayload)
+                    if(response){
+                        pricingList = response.pricing_list;
+                        togglePageElements(toPage)
+                        fetchServices(response.pricing_list)
+                    }
+                }
+            }else{
+                togglePageElements(toPage)
             }
         }
 
@@ -137,7 +161,130 @@
                 addressValues[fieldCount] = $(this).val();
             })
         }
-        function fetchServices(){
+        async function populateAddressesGeometry(){
+            let responses = [];
+            const promiseArray = addressValues.map(address=>{
+                return $.ajax('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', {
+                    dataType: 'json',
+                    data: {
+                        key: 'AIzaSyDg6MWhP5rxuDdvkXNVQdKAoi_5f-x7BHI',
+                        input: address,
+                        inputtype: 'textquery',
+                        fields: 'formatted_address,name,geometry,business_status'
+                    }
+                })
+            })
+            try{
+                responses = await Promise.all(promiseArray);
+                responses.shift();
+                responses = responses.map((response, index)=>{
+                    if(response.candidates.length > 0){
+                        return {
+                            address: addressValues[index+1],
+                            longitude: response.candidates[0].geometry.location.lng||0,
+                            latitude: response.candidates[0].geometry.location.lat||0
+                        }
+                    }
+                    return {address:addressValues[index+1], longitude: 0, latitude: 0}
+                })
+            }catch (e) {
+                alert(`Unable to fetch address info: ${e.message}`)
+            }
+            return responses
+        }
+        async function fetchPricingList(payload){
+            let response = null;
+            try {
+                response = await $.ajax('localhost:8000/quote/get_addresses/', {
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {...payload}
+                });
+            }catch (e) {
+                toastr.error(e.message, "Unable to complete request")
+            }
+            return response
+        }
+        let selectedPricing = {}
+        $('#getQuote').on('click', async (event)=>{
+            event.preventDefault();
+            let response = await submitQuote()
+            if(response){
+                $('#quoteRequest').modal('hide');
+                setTimeout(()=>{
+                    $('#quote_id').text(response.quote_id)
+                    $('#quoteDone').modal('show');
+                }, 1000)
+            }
+        })
+        function fetchServices(pricing_list=[]){
+            for(let i=0; i<pricing_list;i++){
+                servicesBlock.append(`
+                <div class="col-12 col-md-6 mb-2">
+                                    <div class="card">
+                                        <div class="card-body px-0">
+                                            <div class="float-left text-center mx-2 icon">
+                                                <i class="fa fa-building"></i>
+                                            </div>
+                                            <div class="float-right">
+                                                <h5 class="text-muted px-3">${pricing_list[i].bandwidth}Mb</h5>
+                                            </div>
+                                            <h5 class="card-title px-3 text-muted">IP Services</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted font-weight-bolder px-3">${pricing_list[i].service}</h6>
+                                            <h4 class="card-text p-3 text-center">
+                                                $${pricing_list[i].min_cost} - $${pricing_list[i].max_cost}
+                                            </h4>
+                                            <div class="row justify-content-center align-content-center">
+                                                <a id="pricing_${i}" href="javascript:void(0)" class="text-muted pt-2 font-weight-bolder" data-toggle="modal" data-target="#quoteRequest">
+                                                    <i class="fa fa-envelope"></i>&nbsp;GET QUOTE
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                `);
+                $(`#pricing_${i}`).on('click', function () {
+                    selectedPricing = pricing_list[i];
+                    $('#s_service_txt').text(selectedPricing.service);
+                    $('#s_bandwidth').text(selectedPricing.bandwidth);
+                    $('#s_price_range').text(`$${selectedPricing.min_cost}-$${selectedPricing.max_cost}`);
+                    $('#quoteRequest').modal('show')
+                })
+            }
+        }
+        async function submitQuote(){
+            const full_name = $('#fullname').val();
+            const company_name = $('#compname').val();
+            const phone = $('#phone').val();
+            const email = $('#email').val();
+            if(!full_name || !company_name || !phone || !email){
+                toastr.warning("Please complete all fields")
+            }else if(!validateEmail(email)){
+                toastr.warning("Invalid email address")
+            }else{
+                try {
+                    await $.ajax('localhost:8000/quote/send_quote/', {
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            email,
+                            full_name,
+                            service: selectedPricing.service,
+                            pricing_ids: selectedPricing.pricing_ids
+                        }
+                    });
+                    return { quote_id : 5672}
+                }catch (e) {
+                    toastr.error(e.message, "Unable to complete request");
+                }
+            }
+            return null
+        }
+        function validateEmail(mail){
+            return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)
+        }
+
+        function fetchServices1(){
             for(let i=0; i<6;i++){
                 servicesBlock.append(`
                 <div class="col-12 col-md-6 mb-2">
@@ -155,7 +302,7 @@
                                                 $480 - $650
                                             </h4>
                                             <div class="row justify-content-center align-content-center">
-                                                <a href="#" class="text-muted pt-2 font-weight-bolder">
+                                                <a href="javascript:void(0)" class="text-muted pt-2 font-weight-bolder" data-toggle="modal" data-target="#quoteRequest">
                                                     <i class="fa fa-envelope"></i>&nbsp;GET QUOTE
                                                 </a>
                                             </div>
