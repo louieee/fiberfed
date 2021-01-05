@@ -148,7 +148,7 @@
             addressBlockElement.append(`
                     <div class="col-12">
                                 <div class="w-100 mb-2">
-                                    <span class="badge badge-light p-2 text-muted"> <i class="fa fa-building"></i> Address ${fieldCount+1}</span>
+                                    <span class="badge badge-light p-2 text-muted"> <img src="./images/icons/building.png" alt="line"> Address ${fieldCount+1}</span>
                                 </div>
                                 <input class="form-control" type="text" id="address_${fieldCount}" placeholder="Enter a building address">
                             </div>
@@ -171,16 +171,15 @@
         async function fetchPricingList(payload){
             let response = null;
             try {
-                response = await $.post('http://8ed4303a7e71.ngrok.io/quote/get_addresses/',
+                response = await $.post('http://d18ff7b554b7.ngrok.io/quote/get_addresses/',
                     payload,
                     (data)=>{
                         response = data;
-                        console.log('Response Data:', data)
+                        // console.log('Response Data:', data)
                     })
             }catch (e) {
                 toastr.error(e.message, "Unable to complete request")
             }
-            console.log('Returned Response:', response)
             return response
         }
         let selectedPricing = {}
@@ -190,19 +189,21 @@
             if(response){
                 $('#quoteRequest').modal('hide');
                 setTimeout(()=>{
-                    $('#quote_id').text(response.quote_id)
+                    $('#quote_id').text(response.quote_id);
+                    $('#quote_msg').text(response.message);
                     $('#quoteDone').modal('show');
                 }, 1000)
             }
         })
         function fetchServices(pricing_list=[]){
-            for(let i=0; i<pricing_list;i++){
+            // console.log('appending payload:', pricing_list)
+            for(let i=0; i<pricing_list.length;i++){
                 servicesBlock.append(`
                 <div class="col-12 col-md-6 mb-2">
                                     <div class="card">
                                         <div class="card-body px-0">
                                             <div class="float-left text-center mx-2 icon">
-                                                <i class="fa fa-building"></i>
+                                                <img src="./images/icons/building.png" alt="line">
                                             </div>
                                             <div class="float-right">
                                                 <h5 class="text-muted px-3">${pricing_list[i].bandwidth}Mb</h5>
@@ -214,7 +215,7 @@
                                             </h4>
                                             <div class="row justify-content-center align-content-center">
                                                 <a id="pricing_${i}" href="javascript:void(0)" class="text-muted pt-2 font-weight-bolder" data-toggle="modal" data-target="#quoteRequest">
-                                                    <i class="fa fa-envelope"></i>&nbsp;GET QUOTE
+                                                    <img src="./images/icons/envelop.png" alt="line">&nbsp;GET QUOTE
                                                 </a>
                                             </div>
                                         </div>
@@ -224,7 +225,7 @@
                 $(`#pricing_${i}`).on('click', function () {
                     selectedPricing = pricingList[i];
                     $('#s_service_txt').text(selectedPricing.service);
-                    $('#s_bandwidth').text(selectedPricing.bandwidth);
+                    $('#s_bandwidth').text(`${selectedPricing.bandwidth}Mb`);
                     $('#s_price_range').text(`$${selectedPricing.min_cost}-$${selectedPricing.max_cost}`);
                     $('#quoteRequest').modal('show')
                 })
@@ -242,7 +243,7 @@
                 toastr.warning("Invalid email address")
             }else{
                 try {
-                    response = await $.post('http://8ed4303a7e71.ngrok.io/quote/send_quote/',
+                    response = await $.post('http://d18ff7b554b7.ngrok.io/quote/send_quote/',
                         JSON.stringify({
                             email,
                             full_name,
@@ -250,9 +251,9 @@
                         }),
                         (data)=>{
                             response = data;
-                            console.log('Response Data:', data)
+                            // console.log('Response Data:', data)
                         })
-                    response = { quote_id : 5672}   // remove: test response
+                    // response = { quote_id : 5672}   // remove: test response
                 }catch (e) {
                     toastr.error(e.message, "Unable to complete request");
                 }
