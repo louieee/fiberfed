@@ -155,7 +155,7 @@
             addressBlockElement.append(`
                     <div class="col-12">
                                 <div class="w-100 mb-2">
-                                    <span class="badge badge-light p-2 text-muted"> <img src="./images/icons/building.png" alt="line"> Address ${fieldCount+1}</span>
+                                    <span class="badge badge-light p-2 text-muted"> <img src="./images/icons/building.svg" alt="line"> Address ${fieldCount+1}</span>
                                 </div>
                                 <input class="form-control" type="text" id="address_${fieldCount}" placeholder="Enter a building address">
                             </div>
@@ -210,7 +210,7 @@
                                     <div class="card">
                                         <div class="card-body px-0">
                                             <div class="float-left text-center mx-2 icon">
-                                                <img src="./images/icons/building.png" alt="line">
+                                                <img src="./images/icons/building.svg" alt="line">
                                             </div>
                                             <div class="float-right">
                                                 <h5 class="text-muted px-3">${pricing_list[i].bandwidth}Mb</h5>
@@ -222,7 +222,7 @@
                                             </h4>
                                             <div class="row justify-content-center align-content-center">
                                                 <a id="pricing_${i}" href="javascript:void(0)" class="text-muted pt-2 font-weight-bolder" data-toggle="modal" data-target="#quoteRequest">
-                                                    <img src="./images/icons/envelop.png" alt="line">&nbsp;GET QUOTE
+                                                    <img src="./images/icons/envelop.svg" alt="line">&nbsp;GET QUOTE
                                                 </a>
                                             </div>
                                         </div>
