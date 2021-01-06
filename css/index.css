@@ -6,8 +6,25 @@ body{
     background-color: #000000;
 }
 
-.pt-150{
-    padding-top: 150px
+@media screen and (min-width: 320px){
+    .pt-150{
+        padding-top: 70px
+    }
+}
+@media screen and (min-width: 768px){
+    .pt-150{
+        padding-top: 150px
+    }
+}
+
+.badge{
+    border-radius: 20px;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 8px 12px 8px 12px
+}
+.badge-light{
+    background-color: #FCFCFC;
 }
 .text-lighter{
     color: rgba(250,250,250,.7)
@@ -276,4 +293,40 @@ body{
         color: var(--primary-color)
     }
 
+}
+
+@media screen and (min-width: 320px){
+    .foot-block{
+        padding-bottom: 40px
+    }
+}
+@media screen and (min-width: 768px){
+    .foot-block:not(:first-child){
+        padding-bottom: initial;
+    }
+}
+
+@media screen and (min-width: 320px){
+    .extra{
+        display: none;
+    }
+    .bck-scnd-pg{
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        font-size: 20px;
+        padding: 14px;
+        color: #737981;
+        border: 1px solid #F5F5F5
+    }
+    .extra .support-btn{
+        border: 1px solid #F5F5F5;
+        padding: 20px;
+        border-radius: 30px;
+        color: #737981;
+        width:205px;
+        height: 52px;
+        font-weight: bolder;
+        font-size: 14px;
+    }
 }

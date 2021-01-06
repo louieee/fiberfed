@@ -78,9 +78,19 @@
 
         <div class="col-12 col-md-6 col-lg-7 px-5 pb-5 main-content">
             <div class="row">
-                <div class="col-12 pt-150">
+                <div class="col-12 mt-4 extra">
+                    <div class="badge mr-2 hover bck-scnd-pg">
+                            <i class="fa fa-arrow-left"></i>
+                        </div>
                     <div class="float-right">
-                        <span class="badge badge-light p-2">
+                        <button class="btn btn-outline-light support-btn text-center p-2" data-toggle="modal" data-target="#quoteDone">
+                            <img src="./images/icons/headphone.svg" alt="headphone"> TALK TO SUPPORT
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 pt-150">
+                    <div class="float-md-right mb-3 mb-md-0">
+                        <span class="badge badge-light">
                             Step <span id="currPageNum">1</span> of 3
                         </span>
                     </div>
@@ -89,16 +99,10 @@
                     <!-- second text display -->
                     <h1 id="nextStepTxt">
                         Next Step
-                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg" style="font-size: 10px">
-                            <i class="fa fa-arrow-left"></i> return to services
-                        </span>
                     </h1>
                     <!-- third text display -->
                     <h1 id="finalStepTxt">
                         Get your quote
-                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg" style="font-size: 10px">
-                            <i class="fa fa-arrow-left"></i> return to services
-                        </span>
                     </h1>
                 </div>
                 <div class="col-12 decision-txt mt-3">
@@ -130,35 +134,41 @@
                         <!-- Option 1 -->
                         <div class="col-12 options">
                             <div class="float-left text-center mr-4 icon">
-                                <img src="./images/icons/building.png" alt="building">
+                                <img src="images/icons/building.svg" alt="building">
                             </div>
                             <div class="float-right text-center mr-4 icon icon-btn">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
-                            <h5 class="font-weight-bolder">DIA</h5>
-                            <small class="text-muted">Dedicated Internet Access for your business</small>
+                            <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                <h5 class="font-weight-bolder">DIA</h5>
+                                <small class="text-muted">Dedicated Internet Access for your business</small>
+                            </div>
                         </div>
                         <!-- Option 2 -->
                         <div class="col-12 options">
                             <div class="float-left text-center mr-4 icon">
-                                <img src="./images/icons/line.png" alt="line">
+                                <img src="images/icons/line.svg" alt="line">
                             </div>
                             <div class="float-right text-center mr-4 icon icon-btn">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
-                            <h5 class="font-weight-bolder">E-LINE</h5>
-                            <small class="text-muted">Point to Point connection for two(2) locations</small>
+                            <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                <h5 class="font-weight-bolder">E-LINE</h5>
+                                <small class="text-muted">Point to Point connection for two(2) locations</small>
+                            </div>
                         </div>
                         <!-- Option 3 -->
                         <div class="col-12 options">
                             <div class="float-left text-center mr-4 icon">
-                                <img src="./images/icons/lan.png" alt="lan">
+                                <img src="images/icons/lan.svg" alt="lan">
                             </div>
                             <div class="float-right text-center mr-4 icon icon-btn">
                                 <i class="fa fa-arrow-right"></i>
                             </div>
-                            <h5 class="font-weight-bolder">ELAN</h5>
-                            <small class="text-muted">Secure Connectivity across all your locations</small>
+                            <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                <h5 class="font-weight-bolder">ELAN</h5>
+                                <small class="text-muted">Secure Connectivity across all your locations</small>
+                            </div>
                         </div>
                         <!-- End of Options List -->
 
@@ -198,18 +208,18 @@
 
         <div class="container pt-5 pb-2">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 foot-block">
                     <div class="icon text-center">
-                        <img src="./images/icons/list.png" alt="line">
+                        <img src="images/icons/list.svg" alt="line">
                     </div>
                     <h5 class="my-2">Choose a Service</h5>
                     <small class="text-muted">
                         Tell us the service you would like to purchase
                     </small>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 foot-block">
                     <div class="icon text-center">
-                        <img src="./images/icons/location.png" alt="line">
+                        <img src="images/icons/location.svg" alt="line">
                     </div>
                     <h5 class="my-2">Input a Location</h5>
                     <small class="text-muted">
@@ -217,9 +227,9 @@
                         installed
                     </small>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 foot-block">
                     <div class="icon text-center">
-                        <img src="./images/icons/envelop.png" alt="line">
+                        <img src="images/icons/envelop.svg" alt="line">
                     </div>
                     <h5 class="my-2">Get a Quote</h5>
                     <small class="text-muted">
@@ -227,9 +237,9 @@
                         within 24 hours
                     </small>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-3 foot-block">
                     <div class="icon text-center">
-                        <img src="./images/icons/cart.png" alt="line">
+                        <img src="images/icons/cart.svg" alt="line">
                     </div>
                     <h5 class="my-2">Place an Order</h5>
                     <small class="text-muted">
@@ -264,7 +274,7 @@
                     <div class="row">
                         <div class="col-6 py-3">
                             <div class="float-left text-center mr-2 icon">
-                                <img src="./images/icons/building.png" alt="building">
+                                <img src="images/icons/building.svg" alt="building">
                             </div>
                             <h6 class="px-lg-3 px-md-1 text-muted">
                                 IP Services <br>
@@ -349,7 +359,7 @@
                             <div class="card">
                                 <div class="card-body px-0 pb-0">
                                     <div class="float-left text-center mx-2 icon">
-                                        <img src="./images/icons/building.png" alt="building">
+                                        <img src="images/icons/building.svg" alt="building">
                                     </div>
                                     <div class="float-right">
                                         <h5 class="text-muted px-3">50Mb</h5>
