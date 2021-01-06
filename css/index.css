@@ -331,3 +331,10 @@ body{
         font-size: 14px;
     }
 }
+
+.show{
+    display: block
+}
+.hide{
+    display: none
+}
