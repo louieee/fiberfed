@@ -108,7 +108,7 @@ body{
 }
 @media screen and (min-width: 320px) {
     .hero-side{
-        background: url("../images/city.jpg") no-repeat center center;
+        background: url("../images/city.svg") no-repeat center center;
         background-size: cover;
         min-height: 500px;
         color: #ffffff;
