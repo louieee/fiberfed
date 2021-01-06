@@ -134,6 +134,7 @@ body{
     .hero-side .support-btn{
         border-radius: 30px;
         width: 170px;
+        font-size: 12px;
         border-color: rgba(255,255,255,.5);
     }
     .decision-txt small{
