@@ -256,6 +256,9 @@
                         JSON.stringify({
                             email,
                             full_name,
+                            addresses: addressPayload.addresses,
+                            company_name,
+                            phone,
                             ...selectedPricing
                         }),
                         (data)=>{
