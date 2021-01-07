@@ -66,11 +66,9 @@
                 initializeAddressElements();
             }else if(toPage === 3){   // quote page
                 servicesBlock.empty();
-
                 // TODO: To populate test data
                 // togglePageElements(toPage)
                 // fetchServices1()
-
                 // TODO: Uncomment next lines to populate needed real data
                 pricingList = [];
                 let response = await fetchPricingList(JSON.stringify(addressPayload))
@@ -168,6 +166,9 @@
             })
             let input = document.getElementById('address_'+fieldCount);
             let autocomplete = new google.maps.places.Autocomplete(input);
+            input.addEventListener('input', event=>{
+                addressPayload.addresses[fieldCount].address = event.target.value
+            })
             google.maps.event.addListener(autocomplete, 'place_changed', function () {
                 let place = autocomplete.getPlace();
                 $('#address_'+fieldCount).val(place.formatted_address);
