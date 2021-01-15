@@ -94,8 +94,10 @@
                 addAddressField.hide();
                 finalStepTxt.hide()
                 decisionTxt3.hide()
+                
                 addressBlockElement.empty();
                 servicesBlock.empty();
+                pricingList = [];
 
                 firstScreen.fadeIn('slow');
                 currStepTxt.fadeIn('slow');
@@ -201,7 +203,7 @@
                     $('#quote_id').text(response.quote_id);
                     $('#quote_msg').text(response.message);
                     $('#quoteDone').modal('show');
-                }, 1000)
+                }, 500)
             }
         })
         function fetchServices(pricing_list=[]){
@@ -233,9 +235,9 @@
                 `);
                 $(`#pricing_${i}`).on('click', function () {
                     selectedPricing = pricingList[i];
-                    $('#s_service_txt').text(selectedPricing.service);
-                    $('#s_bandwidth').text(`${selectedPricing.bandwidth}Mb`);
-                    $('#s_price_range').text(`$${selectedPricing.min_cost}-$${selectedPricing.max_cost}`);
+                    $('.s_service_txt').text(selectedPricing.service);
+                    $('.s_bandwidth').text(`${selectedPricing.bandwidth}Mb`);
+                    $('.s_price_range').text(`$${selectedPricing.min_cost}-$${selectedPricing.max_cost}`);
                     $('#quoteRequest').modal('show')
                 })
             }
@@ -276,33 +278,5 @@
             return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)
         }
 
-        function fetchServices1(){
-            for(let i=0; i<6;i++){
-                servicesBlock.append(`
-                <div class="col-12 col-md-6 mb-2">
-                                    <div class="card">
-                                        <div class="card-body px-0">
-                                            <div class="float-left text-center mx-2 icon">
-                                                <i class="fa fa-building"></i>
-                                            </div>
-                                            <div class="float-right">
-                                                <h5 class="text-muted px-3">50Mb</h5>
-                                            </div>
-                                            <h5 class="card-title px-3 text-muted">IP Services</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted font-weight-bolder px-3">${selectedOption}</h6>
-                                            <h4 class="card-text p-3 text-center">
-                                                $480 - $650
-                                            </h4>
-                                            <div class="row justify-content-center align-content-center">
-                                                <a href="javascript:void(0)" class="text-muted pt-2 font-weight-bolder" data-toggle="modal" data-target="#quoteRequest">
-                                                    <i class="fa fa-envelope"></i>&nbsp;GET QUOTE
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                `)
-            }
-        }
     })
 })(window.jQuery)

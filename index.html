@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,393 +21,411 @@
 
     <title>FiberFed</title>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDg6MWhP5rxuDdvkXNVQdKAoi_5f-x7BHI"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDg6MWhP5rxuDdvkXNVQdKAoi_5f-x7BHI"></script>
 </head>
+
 <body>
 
-<div class="container-fluid">
-    <div class="row content-block bg-light">
+    <div class="container-fluid">
+        <div class="row content-block bg-light">
 
-        <div class="col-12 col-md-6 col-lg-5 px-0 pb-5 hero-side">
-            <div class="col-12 col-lg-10 px-0 py-0 offset-md-0 offset-lg-2">
-                <div class="col-12 logo-area">
-                    <img src="images/logo.svg" alt="company logo">
-                </div>
-                <!-- First Screen -->
-                <div id="first-screen">
-                    <div class="col-12">
-                        <h1 class="text-white mb-4">
-                            Make the switch to <br>
-                            a <em>high speed</em> <br>
-                            fiber-optic circuit
-                        </h1>
-                        <button class="btn btn-outline-light support-btn text-center p-2" data-toggle="modal" data-target="#quoteDone">
-                            <i class="fa fa-headphones"></i> TALK TO SUPPORT
-                        </button>
+            <div class="col-12 col-md-6 col-lg-5 px-0 pb-5 hero-side">
+                <div class="col-12 col-lg-10 px-0 py-0 offset-md-0 offset-lg-2">
+                    <div class="col-12 logo-area">
+                        <img src="images/logo.svg" alt="company logo">
                     </div>
-                    <div class="col-12 mt-10">
-                        <h6>
-                            Or fill the form to get a quote <br>
-                            sent to your email <i class="fa fa-arrow-right"></i>
-                        </h6>
-                    </div>
-                </div>
-                <!-- Second Screen -->
-                <div id="second-screen" class="pl-4 pr-5">
-                    <div class="col-12 pl-0 options-preview">
-                        <h5>Your Info</h5>
-                    </div>
-                    <div class="col-12 pl-0 options-preview">
-                        <h6 class="text-lighter">Service Type</h6>
-                        <p class="mb-2" id="serviceTxt">DIA</p>
-                    </div>
-                    <div class="col-12 pl-0 options-preview">
-                        <h6 class="text-lighter">Location</h6>
-                        <p class="mb-2" id="locationPreview"></p>
-                    </div>
-                    <div class="col-12 pl-0 options-preview">
-                        <div class="float-right">
-                            <i class="fa fa-caret-right"></i>
-                        </div>
-                        <h6 class="text-lighter">Quote</h6>
-                        <div class="ch-25"></div>
-                        <!--                        <p class="mb-2"></p>-->
-                    </div>
-                    <button class="btn btn-outline-light mt-10 support-btn text-center p-2" data-toggle="modal" data-target="#quoteDone">
-                        <i class="fa fa-headphones"></i> TALK TO SUPPORT
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-7 px-5 pb-5 main-content">
-            <div class="row">
-                <div class="col-12 mt-4 extra">
-                    <div class="badge mr-2 hover bck-scnd-pg">
-                            <i class="fa fa-arrow-left"></i>
-                        </div>
-                    <div class="float-right">
-                        <button class="btn btn-outline-light support-btn text-center p-2" data-toggle="modal" data-target="#quoteDone">
-                            <img src="./images/icons/headphone.svg" alt="headphone"> TALK TO SUPPORT
-                        </button>
-                    </div>
-                </div>
-                <div class="col-12 pt-150">
-                    <div class="float-md-right mb-3 mb-md-0">
-                        <span class="badge badge-light">
-                            Step <span id="currPageNum">1</span> of 3
-                        </span>
-                    </div>
-                    <!-- first text display -->
-                    <h1 id="currStepTxt">Get a quote now</h1>
-                    <!-- second text display -->
-                    <h1 id="nextStepTxt">
-                        Next Step
-                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg-2" style="font-size: 10px">
-                            <i class="fa fa-arrow-left"></i>
-                        </span>
-                    </h1>
-                    <!-- third text display -->
-                    <h1 id="finalStepTxt">
-                        Get your quote
-                        <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg-2" style="font-size: 10px">
-                            <i class="fa fa-arrow-left"></i>
-                        </span>
-                    </h1>
-                </div>
-                <div class="col-12 decision-txt mt-3">
-                    <!-- first text display -->
-                    <small class="text-muted pb-3">
-                        Which service would you like to purchase?
-                    </small>
-                    <!-- second text display -->
-                    <small class="text-muted pb-3">
-                        What address would you want to install this at?
-                    </small>
-                    <!-- third text display -->
-                    <small class="text-muted pb-3">
-                        Here are some services we can offer you!
-                    </small>
-                </div>
-                <!-- Options -->
-                <div class="mt-4 w-100">
-                    <div class="row">
-                        <!-- second alert info display -->
-                        <div id="address-alert" class="col-12">
-                            <div class="alert alert-primary" role="alert">
-                                <strong><i class="fa fa-info-circle"></i></strong>
-                                <span id="selectedOption">E-Line installations require two locations.</span>
-                            </div>
-                        </div>
-                        <!-- Options List -->
-
-                        <!-- Option 1 -->
-                        <div class="col-12 options">
-                            <div class="float-left text-center mr-4 icon">
-                                <img src="images/icons/building.svg" alt="building">
-                            </div>
-                            <div class="float-right text-center mr-4 icon icon-btn">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                            <div class="col-8 col-md-12 offset-2 offset-md-0">
-                                <h5 class="font-weight-bolder">DIA</h5>
-                                <small class="text-muted">Dedicated Internet Access for your business</small>
-                            </div>
-                        </div>
-                        <!-- Option 2 -->
-                        <div class="col-12 options">
-                            <div class="float-left text-center mr-4 icon">
-                                <img src="images/icons/line.svg" alt="line">
-                            </div>
-                            <div class="float-right text-center mr-4 icon icon-btn">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                            <div class="col-8 col-md-12 offset-2 offset-md-0">
-                                <h5 class="font-weight-bolder">E-LINE</h5>
-                                <small class="text-muted">Point to Point connection for two(2) locations</small>
-                            </div>
-                        </div>
-                        <!-- Option 3 -->
-                        <div class="col-12 options">
-                            <div class="float-left text-center mr-4 icon">
-                                <img src="images/icons/lan.svg" alt="lan">
-                            </div>
-                            <div class="float-right text-center mr-4 icon icon-btn">
-                                <i class="fa fa-arrow-right"></i>
-                            </div>
-                            <div class="col-8 col-md-12 offset-2 offset-md-0">
-                                <h5 class="font-weight-bolder">ELAN</h5>
-                                <small class="text-muted">Secure Connectivity across all your locations</small>
-                            </div>
-                        </div>
-                        <!-- End of Options List -->
-
-                        <!-- Address List -->
-                        <div class="address-block w-100 mt-3"></div>
-                        <!-- End of Address List -->
-
-                        <div class="col-12 mt-5 address-actions">
-                            <div class="row">
-                                <div class="col-12 col-md-6 col-lg-6">
-                                    <div id="addAddressField" class="w-100">
-                                        <small class="text-muted font-weight-bolder mt-3">ADD ANOTHER BUILDING</small>
-                                        <div class="d-inline-block text-center mr-4 icon icon-btn">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-6">
-                                    <button class="btn btn-primary" id="toQuote">
-                                        <i class="fa fa-arrow-right"></i>&nbsp;CONTINUE TO QUOTE
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- services list -->
-                        <div class="w-100 mt-2">
-                            <div class="row services-block"></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-        <div class="container pt-5 pb-2">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-3 foot-block">
-                    <div class="icon text-center">
-                        <img src="images/icons/list.svg" alt="line">
-                    </div>
-                    <h5 class="my-2">Choose a Service</h5>
-                    <small class="text-muted">
-                        Tell us the service you would like to purchase
-                    </small>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 foot-block">
-                    <div class="icon text-center">
-                        <img src="images/icons/location.svg" alt="line">
-                    </div>
-                    <h5 class="my-2">Input a Location</h5>
-                    <small class="text-muted">
-                        Tell us where you would like the services to be
-                        installed
-                    </small>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 foot-block">
-                    <div class="icon text-center">
-                        <img src="images/icons/envelop.svg" alt="line">
-                    </div>
-                    <h5 class="my-2">Get a Quote</h5>
-                    <small class="text-muted">
-                        We will send a quote to your email inbox
-                        within 24 hours
-                    </small>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 foot-block">
-                    <div class="icon text-center">
-                        <img src="images/icons/cart.svg" alt="line">
-                    </div>
-                    <h5 class="my-2">Place an Order</h5>
-                    <small class="text-muted">
-                        After getting our quote, you place an order
-                        via email
-                    </small>
-                </div>
-
-                <!-- Copyright -->
-                <div class="col-12 col-md-8 col-lg-9 mt-md-5 pt-3" style="border-top: 1px solid rgba(200,200,200, .6)">
-                    <small class="text-muted">&copy; 2021 Fiberfed Broadband Solutions, All Rights Reserved</small>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 mt-md-5 pt-3">
-                    <small class="text-muted">Home / Network / Services / Support</small>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Get Quote Modal -->
-    <div class="modal fade" id="quoteRequest" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content px-4">
-                <div class="modal-header pb-3 px-4 pt-5 pr-5">
-                    <h5 class="modal-title" id="quoteRequestLabel">Request a Quote</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6 py-3">
-                            <div class="float-left text-center mr-2 icon">
-                                <img src="images/icons/building.svg" alt="building">
-                            </div>
-                            <h6 class="px-lg-3 px-md-1 text-muted">
-                                IP Services <br>
-                                <small class="font-weight-bolder" id="s_service_txt">DIA</small>
+                    <!-- First Screen -->
+                    <div id="first-screen">
+                        <div class="col-12">
+                            <h1 class="text-white mb-4">
+                                Make the switch to <br>
+                                a <em>high speed</em> <br>
+                                fiber-optic circuit
+                            </h1>
+                            <h6>
+                                Or fill the form to get a quote <br>
+                                sent to your email <i class="fa fa-arrow-right"></i>
                             </h6>
                         </div>
-                        <div class="col-6 text-right py-3">
-                            <h5 class="text-muted px-3" id="s_bandwidth">50Mb</h5>
-                        </div>
-                        <div class="col-12">
-                            <p class="text-muted font-weight-bolder"><small>
-                                Please fill in your contact information below
-                            </small></p>
-                        </div>
-                        <div class="col-12 pb-4">
-                            <form role="form">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <label for="fullname" class="text-muted">
-                                            <img src="./images/icons/user.svg" alt="user"> Full Name
-                                        </label>
-                                        <input type="text" id="fullname" class="form-control" placeholder="First and Last Name">
-                                    </div>
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <label for="compname" class="text-muted">
-                                            <img src="./images/icons/building_white.svg" alt="building"> Company Name
-                                        </label>
-                                        <input type="text" id="compname" class="form-control" placeholder="Company Name">
-                                    </div>
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <label for="phone" class="text-muted">
-                                            <img src="./images/icons/phone.svg" alt="phone"> Phone Number
-                                        </label>
-                                        <input type="tel" id="phone" class="form-control" placeholder="phone number">
-                                    </div>
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <label for="email" class="text-muted">
-                                            <img src="./images/icons/envelop_white.svg" alt="envelop"> Email Address
-                                        </label>
-                                        <input type="email" id="email" class="form-control" placeholder="example@domain.com">
-                                    </div>
+                        <div class="col-12 mt-10">
 
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <h4 class="text-muted" id="s_price_range">
-                                            $480 - $650
-                                        </h4>
+                            <a class="btn btn-outline-light support-btn text-center p-2"
+                                href="mailto:sales@fiberfed.com">
+                                <i class="fa fa-headphones"></i> TALK TO SUPPORT
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Second Screen -->
+                    <div id="second-screen" class="pl-4 pr-5">
+                        <div class="col-12 pl-0 options-preview">
+                            <h5>Your Info</h5>
+                        </div>
+                        <div class="col-12 pl-0 options-preview">
+                            <h6 class="text-lighter">Service Type</h6>
+                            <p class="mb-2" id="serviceTxt">DIA</p>
+                        </div>
+                        <div class="col-12 pl-0 options-preview">
+                            <h6 class="text-lighter">Location</h6>
+                            <p class="mb-2" id="locationPreview"></p>
+                        </div>
+                        <div class="col-12 pl-0 options-preview">
+                            <div class="float-right">
+                                <i class="fa fa-caret-right"></i>
+                            </div>
+                            <h6 class="text-lighter">Quote</h6>
+                            <div class="ch-25"></div>
+                            <!--                        <p class="mb-2"></p>-->
+                        </div>
+                        <a class="btn btn-outline-light mt-10 support-btn text-center p-2" href="mailto:sales@fiberfed.com">
+                            <i class="fa fa-headphones"></i> TALK TO SUPPORT
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-7 px-5 pb-5 main-content">
+                <div class="row">
+                    <div class="col-12 mt-4 extra">
+                        <div class="badge mr-2 hover bck-scnd-pg">
+                            <i class="fa fa-arrow-left"></i>
+                        </div>
+                        <div class="float-right">
+                            <button class="btn btn-outline-light support-btn text-center p-2" href="mailto:sales@fiberfed.com">
+                                <img src="./images/icons/headphone.svg" alt="headphone"> TALK TO SUPPORT
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 pt-150">
+                        <div class="float-md-right mb-3 mb-md-0">
+                            <span class="badge badge-light">
+                                Step <span id="currPageNum">1</span> of 3
+                            </span>
+                        </div>
+                        <!-- first text display -->
+                        <h1 id="currStepTxt">Get a quote now</h1>
+                        <!-- second text display -->
+                        <h1 id="nextStepTxt">
+                            Next Step
+                            <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg-2"
+                                style="font-size: 10px">
+                                <i class="fa fa-arrow-left"></i>
+                            </span>
+                        </h1>
+                        <!-- third text display -->
+                        <h1 id="finalStepTxt">
+                            Get your quote
+                            <span class="float-right badge badge-light p-2 mr-2 hover bck-scnd-pg-2"
+                                style="font-size: 10px">
+                                <i class="fa fa-arrow-left"></i>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="col-12 decision-txt mt-3">
+                        <!-- first text display -->
+                        <small class="text-muted pb-3">
+                            Which service would you like to purchase?
+                        </small>
+                        <!-- second text display -->
+                        <small class="text-muted pb-3">
+                            What address would you want to install this at?
+                        </small>
+                        <!-- third text display -->
+                        <small class="text-muted pb-3">
+                            Here are some services we can offer you!
+                        </small>
+                    </div>
+                    <!-- Options -->
+                    <div class="mt-4 w-100">
+                        <div class="row">
+                            <!-- second alert info display -->
+                            <div id="address-alert" class="col-12">
+                                <div class="alert alert-primary" role="alert">
+                                    <strong><i class="fa fa-info-circle"></i></strong>
+                                    <span id="selectedOption">E-Line installations require two locations.</span>
+                                </div>
+                            </div>
+                            <!-- Options List -->
+
+                            <!-- Option 1 -->
+                            <div class="col-12 options">
+                                <div class="float-left text-center mr-4 icon">
+                                    <img src="images/icons/building.svg" alt="building">
+                                </div>
+                                <div class="float-right text-center mr-4 icon icon-btn">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                    <h5 class="font-weight-bolder">DIA</h5>
+                                    <small class="text-muted">Dedicated Internet Access for your business</small>
+                                </div>
+                            </div>
+                            <!-- Option 2 -->
+                            <div class="col-12 options">
+                                <div class="float-left text-center mr-4 icon">
+                                    <img src="images/icons/line.svg" alt="line">
+                                </div>
+                                <div class="float-right text-center mr-4 icon icon-btn">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                    <h5 class="font-weight-bolder">E-LINE</h5>
+                                    <small class="text-muted">Point to Point connection for two(2) locations</small>
+                                </div>
+                            </div>
+                            <!-- Option 3 -->
+                            <div class="col-12 options">
+                                <div class="float-left text-center mr-4 icon">
+                                    <img src="images/icons/lan.svg" alt="lan">
+                                </div>
+                                <div class="float-right text-center mr-4 icon icon-btn">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <div class="col-8 col-md-12 offset-2 offset-md-0">
+                                    <h5 class="font-weight-bolder">ELAN</h5>
+                                    <small class="text-muted">Secure Connectivity across all your locations</small>
+                                </div>
+                            </div>
+                            <!-- End of Options List -->
+
+                            <!-- Address List -->
+                            <div class="address-block w-100 mt-3"></div>
+                            <!-- End of Address List -->
+
+                            <div class="col-12 mt-5 address-actions">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6">
+                                        <div id="addAddressField" class="w-100">
+                                            <small class="text-muted font-weight-bolder mt-3">ADD ANOTHER
+                                                BUILDING</small>
+                                            <div class="d-inline-block text-center mr-4 icon icon-btn">
+                                                <i class="fa fa-plus"></i>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                                        <button class="btn btn-primary" id="getQuote">
-                                            <i class="fa fa-arrow-right"></i>&nbsp;GET QUOTE
+                                    <div class="col-12 col-md-6 col-lg-6">
+                                        <button class="btn btn-primary" id="toQuote">
+                                            <i class="fa fa-arrow-right"></i>&nbsp;CONTINUE TO QUOTE
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- services list -->
+                            <div class="w-100 mt-2">
+                                <div class="row services-block"></div>
+                            </div>
+
                         </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="container pt-5 pb-2">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 foot-block">
+                        <div class="icon text-center">
+                            <img src="images/icons/list.svg" alt="line">
+                        </div>
+                        <h5 class="my-2">Choose a Service</h5>
+                        <small class="text-muted">
+                            Tell us the service you would like to purchase
+                        </small>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 foot-block">
+                        <div class="icon text-center">
+                            <img src="images/icons/location.svg" alt="line">
+                        </div>
+                        <h5 class="my-2">Input a Location</h5>
+                        <small class="text-muted">
+                            Tell us where you would like the services to be
+                            installed
+                        </small>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 foot-block">
+                        <div class="icon text-center">
+                            <img src="images/icons/envelop.svg" alt="line">
+                        </div>
+                        <h5 class="my-2">Get a Quote</h5>
+                        <small class="text-muted">
+                            We will send a quote to your email inbox
+                            within 24 hours
+                        </small>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 foot-block">
+                        <div class="icon text-center">
+                            <img src="images/icons/cart.svg" alt="line">
+                        </div>
+                        <h5 class="my-2">Place an Order</h5>
+                        <small class="text-muted">
+                            After getting our quote, you place an order
+                            via email
+                        </small>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="col-12 col-md-8 col-lg-9 mt-md-5 pt-3"
+                        style="border-top: 1px solid rgba(200,200,200, .6)">
+                        <small class="text-muted">&copy; 2021 Fiberfed Broadband Solutions, All Rights Reserved</small>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mt-md-5 pt-3">
+                        <small class="text-muted">Home / Network / Services / Support</small>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
-    <!-- Quote Sent Modal -->
-    <div class="modal fade" id="quoteDone" tabindex="-1" role="dialog" aria-labelledby="quoteDoneLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content px-4">
-                <div class="modal-header pb-3 px-4 pt-5 pr-5">
-                    <h5 class="modal-title" id="quoteDoneLabel">Quote Sent</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
-                            <h6 class="txt-primary font-weight-bolder">
-                                Quote ID: <span id="quote_id">1293G49E</span>
-                            </h6>
-                            <p class="text-muted mt-5">
-                                <span id="quote_msg"></span>
-                            </p>
-                        </div>
-                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2 services-block2">
-                            <div class="card">
-                                <div class="card-body px-0 pb-0">
-                                    <div class="float-left text-center mx-2 icon">
-                                        <img src="images/icons/building.svg" alt="building">
-                                    </div>
-                                    <div class="float-right">
-                                        <h5 class="text-muted px-3">50Mb</h5>
-                                    </div>
-                                    <h5 class="card-title px-3 text-muted">IP Services</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted font-weight-bolder px-3">DIA</h6>
-                                    <h4 class="card-text p-3 text-center">
-                                        $480 - $650
-                                    </h4>
+
+        <!-- Get Quote Modal -->
+        <div class="modal fade" id="quoteRequest" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content px-4">
+                    <div class="modal-header pb-3 px-4 pt-5 pr-5">
+                        <h5 class="modal-title" id="quoteRequestLabel">Request a Quote</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6 py-3">
+                                <div class="float-left text-center mr-2 icon">
+                                    <img src="images/icons/building.svg" alt="building">
                                 </div>
+                                <h6 class="px-lg-3 px-md-1 text-muted">
+                                    IP Services <br>
+                                    <small class="font-weight-bolder s_service_txt">DIA</small>
+                                </h6>
+                            </div>
+                            <div class="col-6 text-right py-3">
+                                <h5 class="text-muted px-3 s_bandwidth">50Mb</h5>
+                            </div>
+                            <div class="col-12">
+                                <p class="text-muted font-weight-bolder"><small>
+                                        Please fill in your contact information below
+                                    </small></p>
+                            </div>
+                            <div class="col-12 pb-4">
+                                <form role="form">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <label for="fullname" class="text-muted">
+                                                <img src="./images/icons/user.svg" alt="user"> Full Name
+                                            </label>
+                                            <input type="text" id="fullname" class="form-control"
+                                                placeholder="First and Last Name">
+                                        </div>
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <label for="compname" class="text-muted">
+                                                <img src="./images/icons/building_white.svg" alt="building"> Company
+                                                Name
+                                            </label>
+                                            <input type="text" id="compname" class="form-control"
+                                                placeholder="Company Name">
+                                        </div>
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <label for="phone" class="text-muted">
+                                                <img src="./images/icons/phone.svg" alt="phone"> Phone Number
+                                            </label>
+                                            <input type="tel" id="phone" class="form-control"
+                                                placeholder="phone number">
+                                        </div>
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <label for="email" class="text-muted">
+                                                <img src="./images/icons/envelop_white.svg" alt="envelop"> Email Address
+                                            </label>
+                                            <input type="email" id="email" class="form-control"
+                                                placeholder="example@domain.com">
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <h4 class="text-muted s_price_range">
+                                                $480 - $650
+                                            </h4>
+                                        </div>
+                                        <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                            <button class="btn btn-primary" id="getQuote">
+                                                <i class="fa fa-arrow-right"></i>&nbsp;GET QUOTE
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row my-3">
-                    <div class="col-12 col-md-12 col-lg-6">
-                        <p class="text-muted">Have any questions?</p>
-                        <button class="btn fiber-btn-inv">
-                            <i class="fa fa-headphones"></i>&nbsp;TALK TO SUPPORT
+            </div>
+        </div>
+        <!-- Quote Sent Modal -->
+        <div class="modal fade" id="quoteDone" tabindex="-1" role="dialog" aria-labelledby="quoteDoneLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content px-4">
+                    <div class="modal-header pb-3 px-4 pt-5 pr-5">
+                        <h5 class="modal-title" id="quoteDoneLabel">Quote Sent</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="col-12 col-md-12 col-lg-6">
-                        <p class="text-muted">Want another quote?</p>
-                        <button class="btn fiber-btn-inv" data-dismiss="modal" id="newQuote">
-                            <i class="fa fa-plus"></i>&nbsp;GET ANOTHER QUOTE
-                        </button>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+                                <h6 class="txt-primary font-weight-bolder">
+                                    Quote ID: <span id="quote_id">1293G49E</span>
+                                </h6>
+                                <p class="text-muted mt-5">
+                                    <span id="quote_msg"></span>
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-6 pt-4 px-4 mt-2 services-block2">
+                                <div class="card">
+                                    <div class="card-body px-0 pb-0">
+                                        <div class="float-left text-center mx-2 icon">
+                                            <img src="images/icons/building.svg" alt="building">
+                                        </div>
+                                        <div class="float-right">
+                                            <h5 class="text-muted px-3 s_bandwidth">50Mb</h5>
+                                        </div>
+                                        <h5 class="card-title px-3 text-muted">IP Services</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted font-weight-bolder px-3 s_service_txt">
+                                            DIA
+                                        </h6>
+                                        <h4 class="card-text p-3 text-center s_price_range">
+                                            $480 - $650
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-12 col-md-12 col-lg-6">
+                            <p class="text-muted">Have any questions?</p>
+                            <a class="btn fiber-btn-inv" href="mailto:sales@fiberfed.com">
+                                <i class="fa fa-headphones"></i>&nbsp;TALK TO SUPPORT
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-6">
+                            <p class="text-muted">Want another quote?</p>
+                            <button class="btn fiber-btn-inv" data-dismiss="modal" id="newQuote">
+                                <i class="fa fa-plus"></i>&nbsp;GET ANOTHER QUOTE
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
-<script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
-<script src="./vendors/bootstrap/js/bootstrap.bundle.js"></script>
-<script src="./vendors/toastr/toastr.min.js"></script>
-<script src="./js/index.js"></script>
+    <script src="./vendors/jquery/jquery-3.5.1.min.js"></script>
+    <script src="./vendors/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./vendors/toastr/toastr.min.js"></script>
+    <script src="./js/index.js"></script>
 </body>
+
 </html>
