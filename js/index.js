@@ -1,5 +1,6 @@
 (($)=>{
     $(document).ready(()=>{
+        const preloader = $('#preloader');
         const optionElem = $('.options');
         const firstScreen = $('#first-screen');
         const secondScreen = $('#second-screen');
@@ -33,7 +34,7 @@
             service: ''
         }
 
-
+        preloader.fadeOut('slow');
         for(const option of optionElem){
             $(option).on('click', ()=> gotoPage(2, $(option).find('h5').text().trim()))
         }
@@ -71,7 +72,9 @@
                 // fetchServices1()
                 // TODO: Uncomment next lines to populate needed real data
                 pricingList = [];
+                preloader.fadeIn()
                 let response = await fetchPricingList(JSON.stringify(addressPayload))
+                preloader.fadeOut()
                 if(response){
                     pricingList = response.pricing_list;
                     togglePageElements(toPage)
@@ -196,7 +199,9 @@
         let selectedPricing = {}
         $('#getQuote').on('click', async (event)=>{
             event.preventDefault();
-            let response = await submitQuote()
+            preloader.fadeIn()
+            let response = await submitQuote();
+            preloader.fadeOut()
             if(response){
                 $('#quoteRequest').modal('hide');
                 setTimeout(()=>{
