@@ -72,9 +72,17 @@
                 // fetchServices1()
                 // TODO: Uncomment next lines to populate needed real data
                 pricingList = [];
-                preloader.fadeIn()
+                
+                $('#toQuoteTxt').hide()
+                $('#toQuoteLoader').fadeIn();
+                $('#toQuoteLoader').parent('button').prop("disabled", true)
+                
                 let response = await fetchPricingList(JSON.stringify(addressPayload))
-                preloader.fadeOut()
+                
+                $('#toQuoteLoader').hide()
+                $('#toQuoteTxt').fadeIn();
+                $('#toQuoteLoader').parent('button').prop("disabled", false)
+
                 if(response){
                     pricingList = response.pricing_list;
                     togglePageElements(toPage)
@@ -199,9 +207,19 @@
         let selectedPricing = {}
         $('#getQuote').on('click', async (event)=>{
             event.preventDefault();
-            preloader.fadeIn()
+
+
+            $('#getQuoteTxt').hide()
+            $('#getQuoteLoader').fadeIn();
+            $('#getQuoteLoader').parent('button').prop("disabled", true)
+            
             let response = await submitQuote();
-            preloader.fadeOut()
+
+
+            $('#getQuoteLoader').hide()
+            $('#getQuoteTxt').fadeIn();
+            $('#getQuoteLoader').parent('button').prop("disabled", false)
+            
             if(response){
                 $('#quoteRequest').modal('hide');
                 setTimeout(()=>{

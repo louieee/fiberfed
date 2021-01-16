@@ -82,7 +82,8 @@
                             <div class="ch-25"></div>
                             <!--                        <p class="mb-2"></p>-->
                         </div>
-                        <a class="btn btn-outline-light mt-10 support-btn text-center p-2" href="mailto:sales@fiberfed.com">
+                        <a class="btn btn-outline-light mt-10 support-btn text-center p-2"
+                            href="mailto:sales@fiberfed.com">
                             <i class="fa fa-headphones"></i> TALK TO SUPPORT
                         </a>
                     </div>
@@ -96,7 +97,8 @@
                             <i class="fa fa-arrow-left"></i>
                         </div>
                         <div class="float-right">
-                            <button class="btn btn-outline-light support-btn text-center p-2" href="mailto:sales@fiberfed.com">
+                            <button class="btn btn-outline-light support-btn text-center p-2"
+                                href="mailto:sales@fiberfed.com">
                                 <img src="./images/icons/headphone.svg" alt="headphone"> TALK TO SUPPORT
                             </button>
                         </div>
@@ -210,7 +212,12 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-lg-6">
                                         <button class="btn btn-primary" id="toQuote">
-                                            <i class="fa fa-arrow-right"></i>&nbsp;CONTINUE TO QUOTE
+                                            <span id='toQuoteLoader' style="display:none">
+                                                <img class='preloader-sm' src="images/Ripple.svg">
+                                            </span>
+                                            <span id='toQuoteTxt'>
+                                                <i class="fa fa-arrow-right"></i>&nbsp;CONTINUE TO QUOTE
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
@@ -352,8 +359,14 @@
                                             </h4>
                                         </div>
                                         <div class="col-12 col-lg-6 pt-4 px-4 mt-2">
+
                                             <button class="btn btn-primary" id="getQuote">
-                                                <i class="fa fa-arrow-right"></i>&nbsp;GET QUOTE
+                                                <span id='getQuoteLoader' style="display:none">
+                                                    <img class='preloader-sm' src="images/Ripple.svg">
+                                                </span>
+                                                <span id='getQuoteTxt'>
+                                                    <i class="fa fa-arrow-right"></i>&nbsp;GET QUOTE
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
